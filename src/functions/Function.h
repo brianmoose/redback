@@ -50,10 +50,9 @@ class Function :
 public:
   /**
    * Class constructor
-   * \param name The name of the function
    * \param parameters The input parameters for the function
    */
-  Function(const std::string & name, InputParameters parameters);
+  Function(const InputParameters & parameters);
 
   /**
    * Function destructor
@@ -86,6 +85,14 @@ public:
    * \return A gradient of the function evaluated at the time and location
    */
   virtual RealGradient gradient(Real t, const Point & p);
+
+  /**
+   * Get the time derivative of the function
+   * \param t The time
+   * \param p The point in space (x,y,z)
+   * \return The time derivative of the function at the specified time and location
+   */
+  virtual Real timeDerivative(Real t, const Point & p);
 
   // Not defined
   virtual Real integral();

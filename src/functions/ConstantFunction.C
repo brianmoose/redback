@@ -12,23 +12,23 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#include "RedbackRandomFunction.h"
+#include "ConstantFunction.h"
 
-template<> InputParameters validParams<RedbackRandomFunction>()
+template<> InputParameters validParams<ConstantFunction>()
 {
    InputParameters params = validParams<Function>();
-   params.addParam<Real>("value", 0.0, "The random(?) value");
+   params.addParam<Real>("value", 0.0, "The constant value");
    return params;
 }
 
-RedbackRandomFunction::RedbackRandomFunction(const std::string & name, InputParameters parameters) :
-    Function(name, parameters),
+ConstantFunction::ConstantFunction(const InputParameters & parameters) :
+    Function(parameters),
     _value(getParam<Real>("value"))
 {
 }
 
 Real
-RedbackRandomFunction::value(Real, const Point &)
+ConstantFunction::value(Real, const Point &)
 {
   return _value;
 }
