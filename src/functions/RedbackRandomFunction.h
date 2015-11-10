@@ -12,22 +12,22 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef CONSTANTFUNCTION_H
-#define CONSTANTFUNCTION_H
+#ifndef REDBACKRANDOMFUNCTION_H
+#define REDBACKRANDOMFUNCTION_H
 
 #include "Function.h"
 
-class ConstantFunction;
+class RedbackRandomFunction;
 
-template<> InputParameters validParams<ConstantFunction>();
+template<> InputParameters validParams<RedbackRandomFunction>();
 
 /**
- * Class that represents constant function
+ * Class that represents random function
  */
-class ConstantFunction : public Function
+class RedbackRandomFunction : public Function
 {
 public:
-  ConstantFunction(const InputParameters & parameters);
+  RedbackRandomFunction(const InputParameters & parameters);
 
   virtual Real value(Real t, const Point & p);
 
@@ -36,5 +36,6 @@ protected:
 };
 
 #endif
+
 
 
