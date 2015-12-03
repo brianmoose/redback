@@ -13,24 +13,46 @@
 /****************************************************************/
 
 #include "RedbackRandomFunction.h"
+#include "Function.h"
+#include "MooseRandom.h"
+
+#include "libmesh/point.h"
+
 
 template<> InputParameters validParams<RedbackRandomFunction>()
 {
-   InputParameters params = validParams<Function>();
-   params.addParam<Real>("value", 0.0, "The constant value");
+  InputParameters params = validParams<Function>();
+  params.addParam<Real>("min", 0.0, "Lower bound of the randomly generated values");
+  params.addParam<Real>("max", 1.0, "Upper bound of the randomly generated values");
+  params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
+  params.addRequiredParam<FunctionName>("function", "The initial condition function (without randomness).");
    return params;
 }
 
 RedbackRandomFunction::RedbackRandomFunction(const InputParameters & parameters) :
     Function(parameters),
-    _value(getParam<Real>("value"))
+    _min(getParam<Real>("min")),
+    _max(getParam<Real>("max")),
+    _range(_max - _min)
+    _func(getFunction("function"))
+
 {
+  mooseAssert(_range > 0.0, "Min > Max for FunctionWithRandomIC!");
+  MooseRandom::seed(getParam<unsigned int>("seed"));
 }
 
 Real
-RedbackRandomFunction::value(Real, const Point &)
+RedbackRandomFunction::value(Real, const Point & p)
 {
-  return _value;
-}
+  //Random number between 0 and 1
+  Real rand_num = MooseRandom::rand();
 
+  //Between 0 and range
+  rand_num *= _range;
+
+  //Between min and max
+  rand_num += _min;
+
+  return rand_num + _func.value(_t, p);
+}
 

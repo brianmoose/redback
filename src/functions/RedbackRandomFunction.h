@@ -16,8 +16,10 @@
 #define REDBACKRANDOMFUNCTION_H
 
 #include "Function.h"
+#include "InputParameters.h"
 
 class RedbackRandomFunction;
+class Function;
 
 template<> InputParameters validParams<RedbackRandomFunction>();
 
@@ -32,10 +34,15 @@ public:
   virtual Real value(Real t, const Point & p);
 
 protected:
-  const Real & _value;
+  Real f();
+  
+  virtual  Real value (const Point &p);
+  
+  Real _min;
+  Real _max;
+  Real _range;
+  Function & _func;
 };
 
 #endif
-
-
 
