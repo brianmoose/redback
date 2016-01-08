@@ -29,15 +29,15 @@ template<> InputParameters validParams<RedbackRandomFunction>()
    return params;
 }
 
-RedbackRandomFunction::RedbackRandomFunction(const InputParameters & parameters) :
+RedbackRandomFunction::RedbackRandomFunction(const InputParameters & parameters):
     Function(parameters),
     _min(getParam<Real>("min")),
     _max(getParam<Real>("max")),
-    _range(_max - _min)
+    _range(_max - _min),
     _func(getFunction("function"))
 
 {
-  mooseAssert(_range > 0.0, "Min > Max for FunctionWithRandomIC!");
+  mooseAssert(_range > 0.0, "Min > Max for RedbackRandomFunction!");
   MooseRandom::seed(getParam<unsigned int>("seed"));
 }
 
