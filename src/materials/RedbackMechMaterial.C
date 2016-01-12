@@ -12,7 +12,10 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
+#include "Function.h"
 #include "RedbackMechMaterial.h"
+#include "libmesh/quadrature.h"
+#include "MooseMesh.h"
 
 /**
 RedbackMechMaterial integrates the rate dependent plasticity model of Perzyna (Overstress model) in a

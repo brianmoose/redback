@@ -25,7 +25,6 @@ template<> InputParameters validParams<RedbackRandomFunction>()
   params.addParam<Real>("min", 0.0, "Lower bound of the randomly generated values");
   params.addParam<Real>("max", 1.0, "Upper bound of the randomly generated values");
   params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
-  params.addRequiredParam<FunctionName>("function", "The initial condition function (without randomness).");
    return params;
 }
 
@@ -33,13 +32,10 @@ RedbackRandomFunction::RedbackRandomFunction(const InputParameters & parameters)
     Function(parameters),
     _min(getParam<Real>("min")),
     _max(getParam<Real>("max")),
-    _range(_max - _min),
-    _func(getFunction("function"))
-
+    _range(_max - _min)
 {
-  mooseAssert(_range > 0.0, "Min > Max for RedbackRandomFunction!");
-  MooseRandom::seed(getParam<unsigned int>("seed"));
 }
+
 
 Real
 RedbackRandomFunction::value(Real, const Point & p)
@@ -53,6 +49,5 @@ RedbackRandomFunction::value(Real, const Point & p)
   //Between min and max
   rand_num += _min;
 
-  return rand_num + _func.value(_t, p);
+  return rand_num + value(_t, p);
 }
-

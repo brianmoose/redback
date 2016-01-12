@@ -13,6 +13,10 @@
 /****************************************************************/
 
 #include "RedbackMaterial.h"
+#include "libmesh/quadrature.h"
+#include "RedbackMechMaterial.h"
+#include "MooseMesh.h"
+#include "Function.h"
 
 template<>
 InputParameters validParams<RedbackMaterial>()

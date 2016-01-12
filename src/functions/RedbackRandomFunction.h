@@ -27,6 +27,7 @@ template<> InputParameters validParams<RedbackRandomFunction>();
  * Class that represents random function
  */
 class RedbackRandomFunction : public Function
+ 
 {
 public:
   RedbackRandomFunction(const InputParameters & parameters);
@@ -41,7 +42,6 @@ protected:
   Real _min;
   Real _max;
   Real _range;
-  Function & _func;
 };
 
 #endif
