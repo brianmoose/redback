@@ -112,6 +112,17 @@ traceout*.txt
 !/*/*/*/*/*/*/gold/*.vtu
 !/*/*/*/*/*/*/*/gold/*.vtu
 
+# Allow some extra files for image reader
+!/gold/*.txt
+!/*/gold/*.txt
+!/*/*/gold/*.txt
+!/*/*/*/gold/*.txt
+!/*/*/*/*/gold/*.txt
+!/*/*/*/*/*/gold/*.txt
+!/*/*/*/*/*/*/gold/*.txt
+!/*/*/*/*/*/*/*/gold/*.txt
+
+
 peacock_run_tmp.i
 yaml_dump*
 
@@ -171,6 +182,17 @@ theory.synctex.gz
 # Allow files in documentation directories
 !/doc/theory/theory.pdf
 !/doc/theory/figures/*/*.eps
+/doc/**/*-eps-converted-to.pdf
+!/doc/theory/figures/*/*.pdf
 !/doc/theory/data/succombe_files/*.xml
 
 RedbackRevision.h
+
+/doc/doxygen/*
+problems/Oka/best_matches
+problems/Oka/results
+RedbackMechMaterial2.h
+RedbackMechMaterial2.C
+*.h_backup
+*.C_backup
+stuff
